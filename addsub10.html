@@ -1,0 +1,85 @@
+<html>
+<head>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script >
+mycars=new Array();
+i=0;
+for(j=0;j<11;j++)
+{
+	for(k=10-j;k>-1;k--)
+	{str=''+j+' + '+k+' =';
+	mycars[i]=str;
+	console.log(str);
+	i++;
+}
+}
+
+
+
+for(j=0;j<11;j++)
+{
+	for(k=j;k>-1;k--)
+	{str=''+j+' - '+k+' =';
+	mycars[i]=str;
+	console.log(str);i++;}
+
+}
+console.log(i);
+ssort = new Array();
+for(l=0;l<i;l++)
+{
+ssort[l]=l;
+
+}
+ssort.sort(function(){return 0.3-Math.random()});
+ssort.sort(function(){return 0.5-Math.random()});
+ssort.sort(function(){return 0.7-Math.random()});
+ssort.sort(function(){return 0.3-Math.random()});
+ssort.sort(function(){return 0.5-Math.random()});
+ssort.sort(function(){return 0.7-Math.random()});
+for(l=0;l<i;l++)
+{
+console.log(ssort[l]);
+
+}
+x=0;
+function scc(){
+if(x==0){ssort.sort(function(){return 0.5-Math.random()});
+console.log('refresh');}
+$('#suanshistd').text(mycars[ssort[x]]);
+$('#suanshi').text(mycars[ssort[x]]);
+$('#count').text('#第'+(x+1)+'题/共'+i+'题');
+x=(x+1)%i;
+var w=$(document).width();  
+var h=$(document).height();
+var stdw=$('#suanshistd').width();
+var stdh=$('#suanshistd').height();
+var buttonh=$('#next').height();
+var scalefrac=Math.min((w-20)/stdw,(h-20-stdh-buttonh)/stdh)
+var ss='scale('+scalefrac+','+scalefrac+')';
+m=(w-stdw*scalefrac)/3;
+
+$('#suanshi').css({'transform':ss,'transform-origin':'0 0','margin-left':m});
+}
+
+
+
+</script>
+<head>
+</body>
+<body><div style="float:left;"><button id="next"  onclick="scc()">下一题</button></div>
+
+<div id='suanshistd' style="float:left;">
+
+</div>
+<div id='count' style="float:none;">
+
+</div>
+
+<div id='suanshi' style="float:left;">
+
+</div>
+
+<script >scc();</script>
+</body>
+</html>
