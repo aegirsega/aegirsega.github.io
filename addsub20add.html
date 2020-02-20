@@ -9,7 +9,7 @@ for(j=2;j<10;j++)
 	for(k=11-j;k<10;k++)
 	{str=''+j+' + '+k+' =';
 	mycars[i]=str;
-	console.log(str);
+	console.log(i+':'+str);
 	i++;
 }
 }
@@ -55,12 +55,30 @@ m=(w-stdw*scalefrac)/6;
 $('#suanshi').css({'transform':ss,'transform-origin':'0 0','margin-left':m});
 }
 
+function sccpre(){
+x=(x-2+i)%i;
+$('#suanshistd').text(mycars[ssort[x]]);
+$('#suanshi').text(mycars[ssort[x]]);
+$('#count').text('#第'+(x+1)+'题/共'+i+'题');
+
+x=(x+1)%i;
+var w=$(window).width();  
+var h=$(window).height();
+var stdw=$('#suanshistd').width();
+var stdh=$('#suanshistd').height();
+var buttonh=$('#next').height();
+var scalefrac=(Math.min((w-100)/stdw,(h-20-buttonh)/stdh))*0.8
+var ss='scale('+scalefrac+','+scalefrac+')';
+m=(w-stdw*scalefrac)/6;
+
+$('#suanshi').css({'transform':ss,'transform-origin':'0 0','margin-left':m});
+}
 
 
 </script>
 </head>
 
-<body><div style="width:150px;height:120px;float:left;"><button style="width:150px;height:120px;" id="next"  onclick="scc()">下一题</button></div>
+<body><div style="width:150px;height:120px;float:left;"><button style="width:150px;height:120px;" id="next"  onclick="scc()">下一题</button><button style="width:150px;height:120px;" id="preview"  onclick="sccpre()">上一题</button></div>
 
 <div id='suanshistd' style="float:left;">
 
