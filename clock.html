@@ -25,7 +25,7 @@
 
     // 第一种
     var isMove = false;
-    $('#box').addeventlistener(touchstart,function (event) {
+    $('#box').addeventlistener('touchstart',function (event) {
       const element = event.target;
       const rect = element.getBoundingClientRect();
       element.dataset.centerX = rect.left + rect.width / 2;
@@ -34,14 +34,14 @@
       isMove = true;
     });
 
-    $('#box').mousemove(function (event) {
+    $('#box').addEventListener('touchmove',function (event) {
       if (isMove) {
         var angle = getDragAngle(event);
         event.target.style.transform = 'rotate(' + angle + 'rad)';
       }
     });
 
-    $('#box').mouseup(function (event) {
+    $('#box').addEveventlistener('touchend',function (event) {
       isMove = false;
       event.target.dataset.angle = getDragAngle(event);
     });
