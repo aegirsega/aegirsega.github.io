@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <style>
+    .box {
+      width: 200px;
+      height:100px;
+      background: #cccccc;
+      position: absolute;
+      top: 30%;
+      left: 40%;
+      transform-origin: 50% 50% 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="box" class="box"></div>
+
+  <script>
+
+    // 第一种
+    var isMove = false;
+    $('#box').mousedown(function (event) {
+      const element = event.target;
+      const rect = element.getBoundingClientRect();
+      element.dataset.centerX = rect.left + rect.width / 2;
+      element.dataset.centerY = rect.top + rect.height / 2;
+      element.dataset.angle = getDragAngle(event);
+      isMove = true;
+    });
+
+    $('#box').mousemove(function (event) {
+      if (isMove) {
+        var angle = getDragAngle(event);
+        event.target.style.transform = 'rotate(' + angle + 'rad)';
+      }
+    });
+
+    $('#box').mouseup(function (event) {
+      isMove = false;
+      event.target.dataset.angle = getDragAngle(event);
+    });
+
+    function getDragAngle(event) {
+      var element = event.target;
+      var startAngle = parseFloat(element.dataset.angle) || 0;
+      var center = {
+        x: parseFloat(element.dataset.centerX) || 0,
+        y: parseFloat(element.dataset.centerY) || 0,
+      };
+      var angle = Math.atan2(center.y - event.clientY, center.x - event.clientX);
+      return angle - startAngle;
+    }
+
+    </script>
+
+</body>
+</html>
