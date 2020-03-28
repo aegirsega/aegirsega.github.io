@@ -25,7 +25,7 @@
 
     // 第一种
     var isMove = false;
-    $('#box').mousedown(function (event) {
+    $('#box').addeventlistener(touchstart,function (event) {
       const element = event.target;
       const rect = element.getBoundingClientRect();
       element.dataset.centerX = rect.left + rect.width / 2;
