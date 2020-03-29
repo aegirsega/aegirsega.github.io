@@ -30,7 +30,7 @@
       const rect = element.getBoundingClientRect();
       element.dataset.centerX = rect.left + rect.width / 2;
       element.dataset.centerY = rect.top + rect.height / 2;
-      element.dataset.angle = getDragAngle(event);
+      element.dataset.angle = 50;//getDragAngle(event);
       isMove = true;
     });
 
